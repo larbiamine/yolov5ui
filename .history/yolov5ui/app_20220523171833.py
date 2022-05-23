@@ -13,8 +13,8 @@ from PyQt5.QtWidgets import QApplication
 def playVideo(sauce):
     app = QApplication(sys.argv)    
     v = videoplayer.VideoPlayer()
-    v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/2.mp4")
-    # v.abrir(sauce)
+    # v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/1.mp4")
+    v.abrir(sauce)
     v.setWindowTitle("Player")
     v.resize(600, 400)
     v.show()
@@ -52,21 +52,10 @@ class MainWindow(QObject):
                 subprocess.run(explorer, shell=True)
             else:
                 if (type == "video"):
-                    
+                    print("video result "+ result)
                     result = result.replace("file:", "")
-                    result = result.replace("\\", "/")
-                    self.detectionEnd.emit(True, result,"")
-
+                    print("video result "+ result)
                     playVideo(result)
-
-                    # app = QApplication(sys.argv)    
-                    # v = videoplayer.VideoPlayer()
-                    # v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/1.mp4")
-                    # v.abrir(result)
-                    # v.setWindowTitle("Player")
-                    # v.resize(600, 400)
-                    # v.show()
-                    
                 else:
                     self.detectionEnd.emit(True, result,"")
 

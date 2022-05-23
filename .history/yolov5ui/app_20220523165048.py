@@ -7,17 +7,7 @@ from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtCore import QObject, Slot, Signal
 import PySide6.QtQuick
-import videoplayer 
-from PyQt5.QtWidgets import QApplication
 
-def playVideo(sauce):
-    app = QApplication(sys.argv)    
-    v = videoplayer.VideoPlayer()
-    v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/2.mp4")
-    # v.abrir(sauce)
-    v.setWindowTitle("Player")
-    v.resize(600, 400)
-    v.show()
 
 # Main Window Class
 class MainWindow(QObject):
@@ -51,24 +41,7 @@ class MainWindow(QObject):
                 explorer = 'explorer ' + result
                 subprocess.run(explorer, shell=True)
             else:
-                if (type == "video"):
-                    
-                    result = result.replace("file:", "")
-                    result = result.replace("\\", "/")
-                    self.detectionEnd.emit(True, result,"")
-
-                    playVideo(result)
-
-                    # app = QApplication(sys.argv)    
-                    # v = videoplayer.VideoPlayer()
-                    # v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/1.mp4")
-                    # v.abrir(result)
-                    # v.setWindowTitle("Player")
-                    # v.resize(600, 400)
-                    # v.show()
-                    
-                else:
-                    self.detectionEnd.emit(True, result,"")
+                self.detectionEnd.emit(True, result,"")
 
     @Slot()
     def leave(self):

@@ -52,10 +52,8 @@ class MainWindow(QObject):
                 subprocess.run(explorer, shell=True)
             else:
                 if (type == "video"):
-                    
                     result = result.replace("file:", "")
                     result = result.replace("\\", "/")
-                    self.detectionEnd.emit(True, result,"")
 
                     playVideo(result)
 
@@ -66,7 +64,7 @@ class MainWindow(QObject):
                     # v.setWindowTitle("Player")
                     # v.resize(600, 400)
                     # v.show()
-                    
+                    self.detectionEnd.emit(True, result,"")
                 else:
                     self.detectionEnd.emit(True, result,"")
 

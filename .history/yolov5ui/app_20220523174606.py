@@ -56,7 +56,7 @@ class MainWindow(QObject):
                     result = result.replace("file:", "")
                     result = result.replace("\\", "/")
                     self.detectionEnd.emit(True, result,"")
-
+                    subprocess.run(explorer, shell=True)
                     playVideo(result)
 
                     # app = QApplication(sys.argv)    

@@ -52,13 +52,13 @@ class MainWindow(QObject):
                 subprocess.run(explorer, shell=True)
             else:
                 if (type == "video"):
-                    
                     result = result.replace("file:", "")
                     result = result.replace("\\", "/")
-                    self.detectionEnd.emit(True, result,"")
-
-                    playVideo(result)
-
+                    pr = os.fork()
+                    if pr is 0: 
+                        playVideo(result)
+                    else: 
+                        os.wait()
                     # app = QApplication(sys.argv)    
                     # v = videoplayer.VideoPlayer()
                     # v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/1.mp4")
@@ -66,7 +66,7 @@ class MainWindow(QObject):
                     # v.setWindowTitle("Player")
                     # v.resize(600, 400)
                     # v.show()
-                    
+                    self.detectionEnd.emit(True, result,"")
                 else:
                     self.detectionEnd.emit(True, result,"")
 

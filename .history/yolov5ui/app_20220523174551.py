@@ -23,7 +23,7 @@ def playVideo(sauce):
 class MainWindow(QObject):
     def __init__(self):
         QObject.__init__(self)
-
+    
     detectionEnd = Signal(bool, str, str)
     @Slot(str, str)
     def runYolo(self, type, source):
@@ -56,7 +56,6 @@ class MainWindow(QObject):
                     result = result.replace("file:", "")
                     result = result.replace("\\", "/")
                     self.detectionEnd.emit(True, result,"")
-
                     playVideo(result)
 
                     # app = QApplication(sys.argv)    

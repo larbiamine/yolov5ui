@@ -9,7 +9,10 @@ from PySide6.QtCore import QObject, Slot, Signal
 import PySide6.QtQuick
 import videoplayer 
 from PyQt5.QtWidgets import QApplication
+import processify
 
+
+@processify
 def playVideo(sauce):
     app = QApplication(sys.argv)    
     v = videoplayer.VideoPlayer()

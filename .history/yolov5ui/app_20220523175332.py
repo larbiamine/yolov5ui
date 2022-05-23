@@ -10,6 +10,8 @@ import PySide6.QtQuick
 import videoplayer 
 from PyQt5.QtWidgets import QApplication
 
+
+@processify
 def playVideo(sauce):
     app = QApplication(sys.argv)    
     v = videoplayer.VideoPlayer()
