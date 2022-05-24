@@ -244,7 +244,7 @@ ApplicationWindow{
                 console.log("image")
                 
                 backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
-                // pBar.visible = false
+                //pBar.visible = "false"
             }
             if(videoradio.checked){
                 type = "video"
@@ -290,7 +290,7 @@ ApplicationWindow{
                 console.log(result)
                 resulttext.text = msg
                 resulttext.color = "#007a6c"
-                pBar.visible = "false"
+                pBar.visible = false
 
             } else{
                 resulttext.text = "Error "

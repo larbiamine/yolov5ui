@@ -181,7 +181,7 @@ ApplicationWindow{
     //     height : 360
     //     source: "a.mp4"
 
-    //     anchors.top: detectButton.bottom
+    //     anchors.top: createButton.bottom
     //     anchors.topMargin: 10 
     //     anchors.horizontalCenter: parent.horizontalCenter
     //     MouseArea {
@@ -208,20 +208,11 @@ ApplicationWindow{
     }
 
 
-    ProgressBar {
-        anchors.topMargin: 10          
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: detectButton.bottom
-        id: pBar
-        indeterminate: true
-        value: 0.5
-        visible: false
 
-    }
 
     // BUTTON LOGIN
     Button{
-        id: detectButton
+        id: createButton
         width: 300
         text: qsTr("Detection")
         anchors.top: resulttext.bottom
@@ -240,11 +231,8 @@ ApplicationWindow{
             }
             if(imageradio.checked){
                 type = "image"
-                pBar.visible = "true"
                 console.log("image")
-                
                 backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
-                // pBar.visible = false
             }
             if(videoradio.checked){
                 type = "video"
@@ -260,7 +248,14 @@ ApplicationWindow{
         } 
     }
 
-
+    ProgressBar {
+        anchors.topMargin: 10          
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: createButton.bottom
+        id: pBar
+        indeterminate: true
+        value: 0.5
+    }
 
     Button{
         id: exitButton
@@ -290,7 +285,6 @@ ApplicationWindow{
                 console.log(result)
                 resulttext.text = msg
                 resulttext.color = "#007a6c"
-                pBar.visible = "false"
 
             } else{
                 resulttext.text = "Error "

@@ -208,16 +208,7 @@ ApplicationWindow{
     }
 
 
-    ProgressBar {
-        anchors.topMargin: 10          
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: detectButton.bottom
-        id: pBar
-        indeterminate: true
-        value: 0.5
-        visible: false
 
-    }
 
     // BUTTON LOGIN
     Button{
@@ -240,11 +231,10 @@ ApplicationWindow{
             }
             if(imageradio.checked){
                 type = "image"
-                pBar.visible = "true"
                 console.log("image")
-                
+                //pBar.visible = "true"
                 backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
-                // pBar.visible = false
+                //pBar.visible = "false"
             }
             if(videoradio.checked){
                 type = "video"
@@ -260,7 +250,16 @@ ApplicationWindow{
         } 
     }
 
-
+    ProgressBar {
+        anchors.topMargin: 10          
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: detectButton.bottom
+        id: pBar
+        indeterminate: true
+        value: 0.5
+        //visible: false
+        visible: detectButton.pressed ? "true" : "false"
+    }
 
     Button{
         id: exitButton
@@ -290,7 +289,6 @@ ApplicationWindow{
                 console.log(result)
                 resulttext.text = msg
                 resulttext.color = "#007a6c"
-                pBar.visible = "false"
 
             } else{
                 resulttext.text = "Error "
