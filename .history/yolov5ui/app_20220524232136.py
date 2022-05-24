@@ -84,6 +84,14 @@ class MainWindow(QObject):
                     self.detectionEnd.emit(True, result,"")
 
                     self.playVideo(result)
+ 
+                    # app = QApplication(sys.argv)    
+                    # v = videoplayer.VideoPlayer()
+                    # v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/1.mp4")
+                    # v.abrir(result)
+                    # v.setWindowTitle("Player")
+                    # v.resize(600, 400)
+                    # v.show()
                     
                 else:
                     self.detectionEnd.emit(True, result,"")

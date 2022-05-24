@@ -10,22 +10,8 @@ import PySide6.QtQuick
 import videoplayer 
 from PyQt5.QtWidgets import QApplication
 
-# app = QApplication(sys.argv)  
-# v = videoplayer.VideoPlayer() 
-# v.abrir("C:/Users/Jay Liam/Videos/2022-04-27 20-48-22.mp4")
-# # v.abrir(sauce)
-# v.setWindowTitle("Player")
-# v.resize(600, 400)
-# v.show()
-
-
-# app = QApplication(sys.argv)
-# player = videoplayer.VideoPlayer() 
-# player.abrir("C:/Users/Jay Liam/Videos/2022-04-27 20-48-22.mp4")
-# player.setWindowTitle("Player")
-# player.resize(600, 400)
-# player.show()
-# sys.exit(app.exec_())
+app = QApplication(sys.argv)  
+v = videoplayer.VideoPlayer()
 
 # def playVideo(sauce):  
 #     v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/2.mp4")
@@ -41,15 +27,12 @@ class MainWindow(QObject):
 
     detectionEnd = Signal(bool, str, str)
     @Slot(str)
-    def playVideo(self, sauce): 
-        app = QApplication(sys.argv)  
-        v = videoplayer.VideoPlayer() 
-        v.abrir("C:/Users/Jay Liam/Videos/2022-04-27 20-48-22.mp4")
-        #v.abrir(sauce)
+    def playVideo(self, sauce):  
+        v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/2.mp4")
+        # v.abrir(sauce)
         v.setWindowTitle("Player")
         v.resize(600, 400)
         v.show()
-        sys.exit(app.exec_())
     
     @Slot(str, str)
     def runYolo(self, type, source):
@@ -83,7 +66,15 @@ class MainWindow(QObject):
                     result = result.replace("\\", "/")
                     self.detectionEnd.emit(True, result,"")
 
-                    self.playVideo(result)
+                    playVideo(result)
+ 
+                    # app = QApplication(sys.argv)    
+                    # v = videoplayer.VideoPlayer()
+                    # v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/1.mp4")
+                    # v.abrir(result)
+                    # v.setWindowTitle("Player")
+                    # v.resize(600, 400)
+                    # v.show()
                     
                 else:
                     self.detectionEnd.emit(True, result,"")

@@ -44,8 +44,8 @@ class MainWindow(QObject):
     def playVideo(self, sauce): 
         app = QApplication(sys.argv)  
         v = videoplayer.VideoPlayer() 
-        v.abrir("C:/Users/Jay Liam/Videos/2022-04-27 20-48-22.mp4")
-        #v.abrir(sauce)
+        #v.abrir("C:/Users/Jay Liam/Videos/2022-04-27 20-48-22.mp4")
+        v.abrir(sauce)
         v.setWindowTitle("Player")
         v.resize(600, 400)
         v.show()
@@ -84,6 +84,14 @@ class MainWindow(QObject):
                     self.detectionEnd.emit(True, result,"")
 
                     self.playVideo(result)
+ 
+                    # app = QApplication(sys.argv)    
+                    # v = videoplayer.VideoPlayer()
+                    # v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5ui/1.mp4")
+                    # v.abrir(result)
+                    # v.setWindowTitle("Player")
+                    # v.resize(600, 400)
+                    # v.show()
                     
                 else:
                     self.detectionEnd.emit(True, result,"")

@@ -237,8 +237,8 @@ ApplicationWindow{
             if(videoradio.checked){
                 type = "video"
                 console.log("video")
-                //backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
-                backend.playVideo("")
+                // backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
+                backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
             }
             if(directoryradio.checked){
                 type = "directory"

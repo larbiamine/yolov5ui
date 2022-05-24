@@ -39,15 +39,15 @@ class VideoPlayer(QWidget):
         self.statusBar.setFont(QFont("Noto Sans", 7))
         self.statusBar.setFixedHeight(14)
 
-        controlLayout = QHBoxLayout()
-        controlLayout.setContentsMargins(0, 0, 0, 0)
-        #controlLayout.addWidget(openButton)
-        controlLayout.addWidget(self.playButton)
-        controlLayout.addWidget(self.positionSlider)
+        # controlLayout = QHBoxLayout()
+        # controlLayout.setContentsMargins(0, 0, 0, 0)
+        # controlLayout.addWidget(openButton)
+        # controlLayout.addWidget(self.playButton)
+        # controlLayout.addWidget(self.positionSlider)
 
         layout = QVBoxLayout()
         layout.addWidget(videoWidget)
-        layout.addLayout(controlLayout)
+        #layout.addLayout(controlLayout)
         layout.addWidget(self.statusBar)
 
         self.setLayout(layout)
