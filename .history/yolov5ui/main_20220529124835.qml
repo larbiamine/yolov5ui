@@ -216,6 +216,17 @@ ApplicationWindow{
         visible : false
     }
 
+    ProgressBar {
+        id: pBar
+        anchors.topMargin: 10          
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: detectButton.bottom
+        indeterminate: false
+        from: 0
+        to: 1
+        visible: false
+        
+    }
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -269,7 +280,7 @@ ApplicationWindow{
         flat : true
         width: 100
         text: qsTr("Exit")
-
+        //anchors.top: pBar.bottom
         anchors.top: detectButton.bottom
         anchors.topMargin: 10          
         anchors.horizontalCenter: parent.horizontalCenter
@@ -289,9 +300,11 @@ ApplicationWindow{
             if(boolvalue){
                 image.source = result
                 image.visible = true
+                console.log("noice")
                 console.log(result)
                 resulttext.text = msg
                 resulttext.color = "#007a6c"
+                console.log("pBar set to invisible")
 
             } else{
                 resulttext.text = "Error "

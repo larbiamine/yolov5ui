@@ -154,16 +154,7 @@ ApplicationWindow{
     }
 
     Text{
-        //text: qsTr(sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,"") + sourceFolderDialog.currentFolder.toString().replace(/^(file:\/{3})/,""))
-        //acceptLabel
-        function sourceText (){
-            if(directoryradio.checked){
-                return qsTr(sourceFolderDialog.currentFolder.toString().replace(/^(file:\/{3})/,""))
-            }else{
-                return qsTr(sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
-            }
-        } 
-        text: sourceText()
+        text: qsTr(sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,"") + sourceFolderDialog.currentFolder.toString().replace(/^(file:\/{3})/,""))
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         color: "#ffffff"
@@ -180,7 +171,7 @@ ApplicationWindow{
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: source.bottom
         font.pointSize: 10
-        anchors.topMargin: 20       
+        anchors.topMargin: 10       
         anchors.bottomMargin: 10    
     }
 
@@ -217,8 +208,15 @@ ApplicationWindow{
     }
 
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+    ProgressBar {
+        id: pBar
+        anchors.topMargin: 10          
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: detectButton.bottom
+        indeterminate: false
+        value: 0.5
+        visible: false
+
     }
 
     // BUTTON LOGIN
@@ -236,17 +234,17 @@ ApplicationWindow{
         }    
         onClicked:{
             var type;
-
             if(webcamradio.checked){
                 type = "webcam"
-
                 backend.runYolo(type,"")
             }
             if(imageradio.checked){
                 type = "image"
-                console.log("image")                
-                backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
+                pBar.visible = "true"
+                console.log("image")
                 
+                backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
+                // pBar.visible = false
             }
             if(videoradio.checked){
                 type = "video"
@@ -269,8 +267,7 @@ ApplicationWindow{
         flat : true
         width: 100
         text: qsTr("Exit")
-
-        anchors.top: detectButton.bottom
+        anchors.top: pBar.bottom
         anchors.topMargin: 10          
         anchors.horizontalCenter: parent.horizontalCenter
         background: Rectangle {
@@ -289,9 +286,12 @@ ApplicationWindow{
             if(boolvalue){
                 image.source = result
                 image.visible = true
+                console.log("noice")
                 console.log(result)
                 resulttext.text = msg
                 resulttext.color = "#007a6c"
+                pBar.visible = "false"
+                console.log("pBar set to invisible")
 
             } else{
                 resulttext.text = "Error "

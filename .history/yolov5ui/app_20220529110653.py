@@ -75,16 +75,23 @@ class MainWindow(QObject):
                 result ="file:" + os.path.dirname(currentdir) + "\yolov5\\runs\detect\exp\\" + os.path.basename(source)
             result = result.replace("/", "\\\\")
             result = result[:len(result) - 1]
-            if (type == "video"):
-                
-                result = result.replace("file:", "")
-                result = result.replace("\\", "/")
-
-                self.playVideo(result)
-                self.detectionEnd.emit(True, result,"")
-                
+            if(type == "directory"):
+                # self.detectionEnd.emit(True, result, "Resultat sauvgardé dans: "+result)
+                # #open result folder in explorer
+                # explorer = 'explorer ' + result
+                # subprocess.run(explorer, shell=True)
+                pass
             else:
-                self.detectionEnd.emit(True, result,"")
+                if (type == "video"):
+                    
+                    result = result.replace("file:", "")
+                    result = result.replace("\\", "/")
+
+                    self.playVideo(result)
+                    self.detectionEnd.emit(True, result,"")
+                    
+                else:
+                    self.detectionEnd.emit(True, result,"")
 
     @Slot()
     def leave(self):

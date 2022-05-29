@@ -216,6 +216,17 @@ ApplicationWindow{
         visible : false
     }
 
+    ProgressBar {
+        id: pBar
+        anchors.topMargin: 10          
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: detectButton.bottom
+        indeterminate: false
+        from: 0
+        to: 1
+        visible: false
+        
+    }
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));

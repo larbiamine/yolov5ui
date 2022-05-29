@@ -216,9 +216,20 @@ ApplicationWindow{
         visible : false
     }
 
+    BusyIndicator {
+        running: image.status === Image.Loading
+    }
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+    ProgressBar {
+        id: pBar
+        anchors.topMargin: 10          
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: detectButton.bottom
+        indeterminate: false
+        from: 0
+        to: 1
+        visible: true
+        
     }
 
     // BUTTON LOGIN
@@ -236,17 +247,17 @@ ApplicationWindow{
         }    
         onClicked:{
             var type;
-
             if(webcamradio.checked){
                 type = "webcam"
-
                 backend.runYolo(type,"")
             }
             if(imageradio.checked){
                 type = "image"
-                console.log("image")                
-                backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
+                pBar.visible = "true"
+                console.log("image")
                 
+                backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
+                // pBar.visible = false
             }
             if(videoradio.checked){
                 type = "video"
@@ -269,8 +280,7 @@ ApplicationWindow{
         flat : true
         width: 100
         text: qsTr("Exit")
-
-        anchors.top: detectButton.bottom
+        anchors.top: pBar.bottom
         anchors.topMargin: 10          
         anchors.horizontalCenter: parent.horizontalCenter
         background: Rectangle {
@@ -289,9 +299,12 @@ ApplicationWindow{
             if(boolvalue){
                 image.source = result
                 image.visible = true
+                console.log("noice")
                 console.log(result)
                 resulttext.text = msg
                 resulttext.color = "#007a6c"
+                pBar.visible = false
+                console.log("pBar set to invisible")
 
             } else{
                 resulttext.text = "Error "
