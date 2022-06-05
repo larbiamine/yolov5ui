@@ -44,7 +44,7 @@ class MainWindow(QObject):
     def playVideo(self, sauce): 
         app = QApplication(sys.argv)  
         v = videoplayer.VideoPlayer() 
-        #v.abrir("C:/Users/Jay Liam/Videos/2022-04-27 20-48-22.mp4")
+        #v.abrir("C:/Users/Jay Liam/Documents/yolov5ui/yolov5/runs/detect/exp/a.mp4")
         v.abrir(sauce)
         v.setWindowTitle("Player")
         v.resize(600, 400)
@@ -57,9 +57,10 @@ class MainWindow(QObject):
         currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
         detect = '"' + os.path.dirname(currentdir) + "\yolov5\detect.py" + '"'
         pythopath = '"' + os.path.dirname(currentdir) + "yolo\Scripts" + '"'
-        weights = '"' + os.path.dirname(currentdir) + "\yolov5\\nicebest.pt" + '"'
+        # weights = '"' + os.path.dirname(currentdir) + "\yolov5\\nicebest.pt" + '"'
+        weights = '"' + os.path.dirname(currentdir) + "\yolov5\\bouraoui.pt" + '"' 
         if(type == "webcam"):
-            source = "0"
+            source = "1"
         else:
             source = '"' + source + '"'
         command = "python "+detect+" --weights "+weights+" --source "+source+" --exist-ok"

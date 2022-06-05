@@ -99,8 +99,8 @@ class Annotator:
                 self.draw.text((box[0], box[1] - h if outside else box[1]), label, fill=txt_color, font=self.font)
         else:  # cv2
             p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
-            p1 = (p1[0] + 20, p1[1])
-            p2 = (p2[0] - 20, p2[1])
+            p1 = (p1[0] + 5, p1[1])
+            p2 = (p2[0] - 5, p2[1])
             cv2.rectangle(self.im, p1, p2, color, thickness=self.lw+1, lineType=cv2.LINE_AA)
             if label:
                 tf = max(self.lw - 1, 1)  # font thickness
