@@ -319,9 +319,6 @@ ApplicationWindow{
                     if(pklot.checked){
                         model = "pklot"
                     }
-                    if(nicebest.checked){
-                        model = "nicebest"
-                    }
                     if(webcamradio.checked){
                         type = "webcam"
                         backend.runYolo(type,model,"")
