@@ -32,13 +32,13 @@ ApplicationWindow{
         anchors.leftMargin: 5
         anchors.topMargin: 5
         width: parent.width
-        height: parent.height * 2
+        height: parent.height * 5
         clip : false
         ScrollBar.vertical.policy: ScrollBar.AlwaysOn
         ScrollBar.vertical.interactive: true
         Item{
                 width: parent.width
-                height: parent.height*2
+                height: parent.height*3
                 implicitHeight: height   
             MouseArea{
                 id: mouseRegion
