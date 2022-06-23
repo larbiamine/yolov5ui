@@ -98,11 +98,6 @@ ApplicationWindow{
             text: qsTr("Camera")
 
         }
-        RadioButton {
-            id: fakecam
-            text: qsTr("Fake Camera")
-
-        }
 
         RadioButton {
             id: imageradio
@@ -122,36 +117,6 @@ ApplicationWindow{
         anchors.top: chooseType.bottom
         anchors.horizontalCenter: parent.horizontalCenter
     }
-    Text{
-        id: chooseModel
-        text: qsTr("Modele")
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        color: "#ffffff"
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: chooseTypeRadio.bottom
-        anchors.topMargin: 20
-        font.pointSize: 12
-    }
-    RowLayout  {
-        id : chooseModelRadio
-        spacing: 0
-
-        RadioButton {
-            id: bdba
-            text: qsTr("BDBA")
-        }
-
-        RadioButton {
-            id: pklot
-            checked: true
-            text: qsTr("PKlot")
-        }
-
-        anchors.topMargin: 10 
-        anchors.top: chooseModel.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
 
 
     // Source File
@@ -169,20 +134,9 @@ ApplicationWindow{
         }
         width: 300
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: chooseModelRadio.bottom
+        anchors.top: chooseTypeRadio.bottom
         anchors.topMargin: 25
-
-        function ifvis (){
-            if(webcamradio.checked || fakecam.checked){
-                    return false
-                }else{
-                    return true
-                }
-        } 
-        visible: ifvis()
-
-
-        // visible: (!webcamradio.checked || !fakecam.checked)
+        visible: !webcamradio.checked
     }
 
 
@@ -224,18 +178,7 @@ ApplicationWindow{
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter    
         anchors.horizontalCenter: parent.horizontalCenter
-        // anchors.top: source.bottom
-        anchors.top: ifvis2()
-
-        function ifvis2 (){
-            if(webcamradio.checked || fakecam.checked){
-                    return chooseModelRadio.bottom
-                }else{
-                    
-                    return source.bottom
-                }
-        } 
-
+        anchors.top: source.bottom
         font.pointSize: 10
         anchors.topMargin: 20       
         anchors.bottomMargin: 10    
@@ -293,37 +236,28 @@ ApplicationWindow{
         }    
         onClicked:{
             var type;
-            var model;
-            if(bdba.checked){
-                model = "bdba"
-            }
-            if(pklot.checked){
-                model = "pklot"
-            }
+            
             if(webcamradio.checked){
                 type = "webcam"
-                backend.runYolo(type,model,"")
-            }
-            if(fakecam.checked){
-                type = "fakecam"
-                backend.runYolo(type,model,"")
+
+                backend.runYolo(type,"")
             }
             if(imageradio.checked){
                 type = "image"
                 console.log("image")                
-                backend.runYolo(type,model,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
+                backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
                 
             }
             if(videoradio.checked){
                 type = "video"
                 console.log("video")
-                backend.runYolo(type,model,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
+                backend.runYolo(type,sourceFileDialog.currentFile.toString().replace(/^(file:\/{3})/,""))
                 //backend.playVideo("")
             }
             if(directoryradio.checked){
                 type = "directory"
                 console.log("directory")
-                backend.runYolo(type,model,sourceFolderDialog.currentFolder.toString().replace(/^(file:\/{3})/,""))
+                backend.runYolo(type,sourceFolderDialog.currentFolder.toString().replace(/^(file:\/{3})/,""))
             }
         } 
     }

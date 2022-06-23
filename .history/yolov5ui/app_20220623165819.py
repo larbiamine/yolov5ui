@@ -59,7 +59,7 @@ class MainWindow(QObject):
         pythopath = '"' + os.path.dirname(currentdir) + "yolo\Scripts" + '"'
         if(model == "bdba"):
             print("bora chosen")
-            weights = '"' + os.path.dirname(currentdir) + "\yolov5\\bouraoui.pt" + '"' 
+            weights = '"' + os.path.dirname(currentdir) + "\yolov5\\boraoui.pt" + '"' 
         else:    
             print("pk chosen")
             weights = '"' + os.path.dirname(currentdir) + "\yolov5\\pklot.pt" + '"' 
@@ -67,10 +67,7 @@ class MainWindow(QObject):
         if(type == "webcam"):
             source = "0"
         else:
-            if(type == "fakecam"):
-                source = "1"
-            else:    
-                source = '"' + source + '"'
+            source = '"' + source + '"'
         command = "python "+detect+" --weights "+weights+" --source "+source+" --exist-ok"
         process = subprocess.run(command, shell=True)
         if(process.returncode == 0):

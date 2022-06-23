@@ -224,15 +224,14 @@ ApplicationWindow{
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter    
         anchors.horizontalCenter: parent.horizontalCenter
-        // anchors.top: source.bottom
-        anchors.top: ifvis2()
+        anchors.top: source.bottom
 
         function ifvis2 (){
             if(webcamradio.checked || fakecam.checked){
-                    return chooseModelRadio.bottom
-                }else{
-                    
                     return source.bottom
+
+                }else{
+                    return chooseModelRadio.bottom
                 }
         } 
 

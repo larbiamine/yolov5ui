@@ -100,7 +100,7 @@ ApplicationWindow{
         }
         RadioButton {
             id: fakecam
-            text: qsTr("Fake Camera")
+            text: qsTr("fake Camera")
 
         }
 
@@ -171,18 +171,7 @@ ApplicationWindow{
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: chooseModelRadio.bottom
         anchors.topMargin: 25
-
-        function ifvis (){
-            if(webcamradio.checked || fakecam.checked){
-                    return false
-                }else{
-                    return true
-                }
-        } 
-        visible: ifvis()
-
-
-        // visible: (!webcamradio.checked || !fakecam.checked)
+        visible: !webcamradio.checked || !fakecam.checked
     }
 
 
@@ -224,18 +213,7 @@ ApplicationWindow{
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter    
         anchors.horizontalCenter: parent.horizontalCenter
-        // anchors.top: source.bottom
-        anchors.top: ifvis2()
-
-        function ifvis2 (){
-            if(webcamradio.checked || fakecam.checked){
-                    return chooseModelRadio.bottom
-                }else{
-                    
-                    return source.bottom
-                }
-        } 
-
+        anchors.top: source.bottom
         font.pointSize: 10
         anchors.topMargin: 20       
         anchors.bottomMargin: 10    

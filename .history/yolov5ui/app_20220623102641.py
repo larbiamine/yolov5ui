@@ -51,26 +51,17 @@ class MainWindow(QObject):
         v.show()
         sys.exit(app.exec_())
     
-    @Slot(str, str, str)
-    def runYolo(self, type, model, source):
+    @Slot(str, str)
+    def runYolo(self, type, source):
 
         currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
         detect = '"' + os.path.dirname(currentdir) + "\yolov5\detect.py" + '"'
         pythopath = '"' + os.path.dirname(currentdir) + "yolo\Scripts" + '"'
-        if(model == "bdba"):
-            print("bora chosen")
-            weights = '"' + os.path.dirname(currentdir) + "\yolov5\\bouraoui.pt" + '"' 
-        else:    
-            print("pk chosen")
-            weights = '"' + os.path.dirname(currentdir) + "\yolov5\\pklot.pt" + '"' 
-        # weights = '"' + os.path.dirname(currentdir) + "\yolov5\\finalmodel.pt" + '"' 
+        weights = '"' + os.path.dirname(currentdir) + "\yolov5\\finalmodel.pt" + '"' 
         if(type == "webcam"):
             source = "0"
         else:
-            if(type == "fakecam"):
-                source = "1"
-            else:    
-                source = '"' + source + '"'
+            source = '"' + source + '"'
         command = "python "+detect+" --weights "+weights+" --source "+source+" --exist-ok"
         process = subprocess.run(command, shell=True)
         if(process.returncode == 0):

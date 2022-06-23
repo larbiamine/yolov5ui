@@ -229,10 +229,10 @@ ApplicationWindow{
 
         function ifvis2 (){
             if(webcamradio.checked || fakecam.checked){
-                    return chooseModelRadio.bottom
-                }else{
-                    
                     return source.bottom
+
+                }else{
+                    return chooseModelRadio.bottom
                 }
         } 
 

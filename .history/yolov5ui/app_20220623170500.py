@@ -67,8 +67,8 @@ class MainWindow(QObject):
         if(type == "webcam"):
             source = "0"
         else:
-            if(type == "fakecam"):
-                source = "1"
+            if(type == "webcam"):
+                pass
             else:    
                 source = '"' + source + '"'
         command = "python "+detect+" --weights "+weights+" --source "+source+" --exist-ok"
