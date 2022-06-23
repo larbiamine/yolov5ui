@@ -235,13 +235,6 @@ ApplicationWindow{
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: source.bottom
                 font.pointSize: 10
-                function ifvis (){
-                    if(webcamradio.checked || fakecam.checked){
-                            return false
-                        }else{
-                            return true
-                        }
-                } 
                 visible: ifvis()
             }
 
