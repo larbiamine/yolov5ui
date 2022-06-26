@@ -20,3 +20,9 @@ yolo/
 *.data
 *.json
 *.cfg
+yolov5/darktrain.pt
+yolov5/finalmodel.pt
+yolov5/last.pt
+yolov5/lighttrain.pt
+yolov5/lighttrain2.pt
+yolov5/pklotbdba.pt
