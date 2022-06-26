@@ -111,6 +111,7 @@ ApplicationWindow{
                 RadioButton {
                     id: webcamradio
                     text: qsTr("Camera")
+                    checked: true
 
                 }
                 RadioButton {
@@ -121,7 +122,7 @@ ApplicationWindow{
 
                 RadioButton {
                     id: imageradio
-                    checked: true
+                    checked: false
                     text: qsTr("Image")
                 }
                 RadioButton {

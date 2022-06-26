@@ -139,7 +139,7 @@ ApplicationWindow{
             }
             Text{
                 id: chooseModel
-                text: qsTr("Modèle")
+                text: qsTr("Modele")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 color: "#ffffff"
